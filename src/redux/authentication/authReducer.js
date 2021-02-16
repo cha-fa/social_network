@@ -5,6 +5,7 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   EDIT_PROFILE,
+  RETRIEVE_USER,
 } from "./authTypes";
 
 const initialState = {
@@ -45,6 +46,15 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
+        token: action.token,
+        isLoggedIn: true,
+      };
+    case RETRIEVE_USER:
+      return {
+        ...state,
+        user: action.user,
+        token: action.token,
+        isLoggedIn: true,
       };
     default:
       return state;

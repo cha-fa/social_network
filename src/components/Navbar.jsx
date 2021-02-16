@@ -32,6 +32,16 @@ const Navbar = ({ currentUser }) => {
             <Link to={"/profile/me"}>Mon Profil</Link>
           </li>
         )}
+        {currentUser && (
+          <li>
+            <Link to={"/profile/13"}> Profil 13</Link>
+          </li>
+        )}
+        {currentUser && (
+          <li>
+            <Link to={"/profile/14"}> Profil 14</Link>
+          </li>
+        )}
         {currentUser && <li onClick={handleClick}>SE DECONNECTER</li>}
       </ul>
     </div>

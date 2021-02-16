@@ -9,10 +9,27 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Cookies from "js-cookie";
+import { fetchRetrieveUser } from "redux/authentication/authMiddleware";
+
+import jwt_decode from "jwt-decode";
 
 const App = () => {
   const currentUser = useSelector((state) => state.user);
+  console.log("SHOW ME YOUR COOKIE", Cookies.get("token"));
+  const token = Cookies.get("token");
+
+  const dispatch = useDispatch();
+
+  const cookie = Cookies.get("token");
+  if (cookie && !currentUser) {
+    console.log("Cookie but not current user");
+    const decodedToken = jwt_decode(token);
+    dispatch(fetchRetrieveUser(decodedToken.id));
+  } else {
+    console.log("CURRENT USER ", currentUser);
+  }
 
   const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
