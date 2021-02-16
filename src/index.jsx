@@ -6,20 +6,25 @@ import Registration from "pages/Registration/Registration";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/store";
 
 const App = () => (
   <container>
-    <h1>New twitter</h1>
+    <Provider store={store}>
+      <h1>New twitter</h1>
+      <p>{store.user}</p>
 
-    <Router>
-      <Navbar />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/register" component={Registration} />
-        <Route path="/login" component={Auth} />
-        <Route path="/profile" exact component={Profile} />
-      </Switch>
-    </Router>
+      <Router>
+        <Navbar />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/register" component={Registration} />
+          <Route path="/login" component={Auth} />
+          <Route path="/profile" exact component={Profile} />
+        </Switch>
+      </Router>
+    </Provider>
   </container>
 );
 
