@@ -4,6 +4,7 @@ import {
   registerSuccess,
   loginFailure,
   loginSuccess,
+  logout,
 } from "./authActions";
 
 export const registerFetch = (userData) => {
@@ -55,7 +56,7 @@ export const loginFetch = (userData) => {
   };
 };
 
-export const logout = () => {
+export const userLogout = () => {
   return (dispatch) => {
     Cookies.remove("token");
     dispatch(logout());

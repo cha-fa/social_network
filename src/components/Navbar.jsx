@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logout } from "redux/authentication/authMiddleware";
-import Cookies from "js-cookie";
+import { userLogout } from "redux/authentication/authMiddleware";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const loginInfo = useSelector((state) => state);
 
-  console.log(loginInfo);
-  Cookies.get();
+  const handleClick = () => {
+    dispatch(userLogout());
+  };
+
   return (
     <div className="Navbar">
       <ul>
@@ -25,7 +25,7 @@ const Navbar = () => {
         <li>
           <Link to="/profile">Profile</Link>
         </li>
-        <li onClick={dispatch(logout())}>SE DECONNECTER</li>
+        <li onClick={handleClick}>SE DECONNECTER</li>
       </ul>
     </div>
   );
