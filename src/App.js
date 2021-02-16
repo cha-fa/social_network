@@ -32,12 +32,14 @@ const App = () => {
       <h1>New twitter</h1>
       {currentUser && <p>User {currentUser.email} est connecté</p>}
       <Router>
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/register" component={Registration} />
           <Route path="/login" component={Auth} />
-          <PrivateRoute path="/profile" exact component={Profile} />
+          <PrivateRoute path="/profile/:userId" exact>
+            <Profile currentUser={currentUser} />
+          </PrivateRoute>
         </Switch>
       </Router>
     </container>

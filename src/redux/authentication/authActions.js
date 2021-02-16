@@ -4,6 +4,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+  EDIT_PROFILE,
 } from "./authTypes";
 
 export const registerFailure = (error) => {
@@ -39,5 +40,12 @@ export const loginSuccess = (user, token) => {
 export const logout = () => {
   return {
     type: LOGOUT,
+  };
+};
+
+export const editProfile = (user) => {
+  return {
+    type: EDIT_PROFILE,
+    user,
   };
 };

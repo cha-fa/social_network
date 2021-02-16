@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogout } from "redux/authentication/authMiddleware";
 
-const Navbar = () => {
+const Navbar = ({ currentUser }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(userLogout());
   };
+
+  console.log(
+    "CURRENT USER IS",
+    currentUser ? currentUser : "pas de current user"
+  );
 
   return (
     <div className="Navbar">
@@ -22,10 +27,12 @@ const Navbar = () => {
         <li>
           <Link to="/register">Registration</Link>
         </li>
-        <li>
-          <Link to="/profile">Profile</Link>
-        </li>
-        <li onClick={handleClick}>SE DECONNECTER</li>
+        {currentUser && (
+          <li>
+            <Link to={"/profile/me"}>Mon Profil</Link>
+          </li>
+        )}
+        {currentUser && <li onClick={handleClick}>SE DECONNECTER</li>}
       </ul>
     </div>
   );

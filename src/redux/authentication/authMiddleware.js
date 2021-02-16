@@ -5,6 +5,7 @@ import {
   loginFailure,
   loginSuccess,
   logout,
+  editProfile,
 } from "./authActions";
 
 export const registerFetch = (userData) => {
@@ -51,6 +52,28 @@ export const loginFetch = (userData) => {
         } else {
           console.log("ERREUR", response.message[0].messages[0].message);
           dispatch(loginFailure(response.message[0].messages[0].message));
+        }
+      });
+  };
+};
+
+export const fetchEditProfile = (userData) => {
+  return (dispatch) => {
+    const loginURL = "http://localhost:1337/users/me";
+
+    fetch(loginURL, {
+      method: "put",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response) {
+          dispatch(editProfile(response));
+          console.log("edit worked !");
         }
       });
   };
