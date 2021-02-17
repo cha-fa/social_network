@@ -7,6 +7,8 @@ import {
   ADD_POST_ERROR,
   EDIT_POST,
   DELETE_POST,
+  ADD_LIKE,
+  REMOVE_LIKE,
 } from "./postsTypes";
 
 const initialState = {
@@ -64,6 +66,20 @@ const postsReducer = (state = initialState, action) => {
         ...state,
         currentPosts: state.currentPosts.filter(
           (post) => post.id !== action.post.id
+        ),
+      };
+    case ADD_LIKE:
+      return {
+        ...state,
+        currentPosts: state.currentPosts.map((post) =>
+          post.id === action.post.id ? { ...post, like: post.like + 1 } : post
+        ),
+      };
+    case REMOVE_LIKE:
+      return {
+        ...state,
+        currentPosts: state.currentPosts.map((post) =>
+          post.id === action.post.id ? { ...post, like: post.like - 1 } : post
         ),
       };
     default:

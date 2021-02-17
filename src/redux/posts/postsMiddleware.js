@@ -7,6 +7,8 @@ import {
   addPostSuccess,
   editPost,
   deletePost,
+  addLike,
+  removeLike,
 } from "./postsActions";
 
 import Cookies from "js-cookie";
@@ -98,6 +100,35 @@ export const fetchDeletePost = (postID) => {
         console.log("DELETE RESPONSE", response);
         if (response) {
           dispatch(deletePost(response));
+        }
+      });
+  };
+};
+
+export const fetchEditLikes = (isLiked, currentLikes, postID) => {
+  return (dispatch) => {
+    let like;
+    console.log("BASE LIKE", currentLikes, "IS LIKED", isLiked);
+    if (isLiked) {
+      like = { like: currentLikes + 1 };
+    } else {
+      like = { like: currentLikes - 1 };
+    }
+    fetch(`http://localhost:1337/posts/${postID}`, {
+      method: "put",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(like),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response && isLiked) {
+          console.log("RESPONSE IN LIKED", response);
+          dispatch(addLike(response));
+        } else if (response) {
+          dispatch(removeLike(response));
         }
       });
   };

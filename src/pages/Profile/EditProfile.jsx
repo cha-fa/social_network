@@ -27,8 +27,6 @@ const EditProfile = () => {
           <label for="username">Username</label>
           <input
             type="text"
-            id="username"
-            name="username"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -38,15 +36,13 @@ const EditProfile = () => {
           <label for="description">description :</label>
           <textarea
             type="text"
-            id="description"
-            name="password"
             required
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 
-        <input type="submit" value="Sign in"></input>
+        <input type="submit" value="Valider les changements"></input>
       </form>
       {loginInfo.error && <p> Erreur : {loginInfo.error}</p>}
     </div>

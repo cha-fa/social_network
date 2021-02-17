@@ -1,21 +1,6 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchPosts } from "redux/posts/postsMiddleware";
 import PostCard from "./PostCard";
 
-const PostList = ({}) => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
-
-  useEffect(() => {
-    dispatch(fetchPosts());
-    const interval = setInterval(() => {
-      dispatch(fetchPosts());
-      console.log("This will run every 30 second!");
-    }, 30000);
-    return () => clearInterval(interval);
-  }, []);
-
+const PostList = ({ posts }) => {
   return (
     <div className="PostList">
       Liste des posts, nombre : {posts.count}

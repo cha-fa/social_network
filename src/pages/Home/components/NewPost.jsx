@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addPost } from "redux/posts/postsMiddleware";
 
-const NewPost = ({ currentUser }) => {
+const NewPost = ({ currentUser, handleNewPost }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
-  console.log("IN NEW POST USER", currentUser);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,6 +13,7 @@ const NewPost = ({ currentUser }) => {
       user: currentUser.id,
     };
     dispatch(addPost(postData));
+    handleNewPost(postData);
   };
 
   return (
