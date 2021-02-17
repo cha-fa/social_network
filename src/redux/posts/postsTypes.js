@@ -4,3 +4,5 @@ export const FETCH_POSTS_ERROR = "FETCH_POSTS_ERROR";
 export const SET_POSTS_COUNT = "SET_POSTS_COUNT";
 export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
 export const ADD_POST_ERROR = "ADD_POST_ERROR";
+export const EDIT_POST = "EDIT_POST";
+export const DELETE_POST = "DELETE_POST";

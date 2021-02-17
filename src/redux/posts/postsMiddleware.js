@@ -5,6 +5,8 @@ import {
   setPostsCount,
   addPostError,
   addPostSuccess,
+  editPost,
+  deletePost,
 } from "./postsActions";
 
 import Cookies from "js-cookie";
@@ -57,6 +59,45 @@ export const addPost = (postData) => {
           dispatch(addPostSuccess(response));
         } else {
           dispatch(addPostError(response.message[0].messages[0].message));
+        }
+      });
+  };
+};
+
+export const fetchEditPost = (text, postID) => {
+  return (dispatch) => {
+    fetch(`http://localhost:1337/posts/${postID}`, {
+      method: "put",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: text }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("EDITING RESPONSE", response);
+        if (response) {
+          dispatch(editPost(response));
+        }
+      });
+  };
+};
+
+export const fetchDeletePost = (postID) => {
+  return (dispatch) => {
+    fetch(`http://localhost:1337/posts/${postID}`, {
+      method: "delete",
+      headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log("DELETE RESPONSE", response);
+        if (response) {
+          dispatch(deletePost(response));
         }
       });
   };

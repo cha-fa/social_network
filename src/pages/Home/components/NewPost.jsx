@@ -5,6 +5,7 @@ import { addPost } from "redux/posts/postsMiddleware";
 const NewPost = ({ currentUser }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  console.log("IN NEW POST USER", currentUser);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,6 +15,7 @@ const NewPost = ({ currentUser }) => {
     };
     dispatch(addPost(postData));
   };
+
   return (
     <div className="NewPost">
       NOUVEAU POST

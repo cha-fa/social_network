@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "redux/posts/postsMiddleware";
 import PostCard from "./PostCard";
 
-const PostList = () => {
+const PostList = ({}) => {
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts);
 

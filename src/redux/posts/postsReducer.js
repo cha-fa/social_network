@@ -5,6 +5,8 @@ import {
   SET_POSTS_COUNT,
   ADD_POST_SUCCESS,
   ADD_POST_ERROR,
+  EDIT_POST,
+  DELETE_POST,
 } from "./postsTypes";
 
 const initialState = {
@@ -47,6 +49,22 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPosts: [...state.currentPosts, action.post],
+      };
+    case EDIT_POST:
+      return {
+        ...state,
+        currentPosts: state.currentPosts.map((post) =>
+          post.id === action.post.id
+            ? { ...post, text: action.post.text }
+            : post
+        ),
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        currentPosts: state.currentPosts.filter(
+          (post) => post.id !== action.post.id
+        ),
       };
     default:
       return state;
