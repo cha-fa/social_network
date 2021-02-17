@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import { fetchDeletePost, fetchEditPost } from "redux/posts/postsMiddleware";
 import { Link } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import Likes from "./Likes";
+import DayJS from "react-dayjs";
 
 const PostCard = ({ post }) => {
   const newText = useRef();
@@ -29,30 +29,31 @@ const PostCard = ({ post }) => {
     }
   };
 
-  console.log(currentPosts);
   return (
     <div className="PostCard">
-      <p>Auteur : {post.user.username}</p>
-
       {currentUser && (
-        <li>
-          <Link to={"/profile/" + post.user.id}>{post.user.username}</Link>
-        </li>
+        <>
+          <li>
+            <Link to={"/profile/" + post.user.id}>{post.user.username}</Link>
+          </li>
+          <Likes currentUser={currentUser} post={post} />
+        </>
       )}
-
       {(!editing && <p>{text}</p>) || (
         <input ref={newText} placeholder={text} defaultValue={text} />
       )}
-      <p>Créé le {post.created_at}</p>
-      <Likes currentUser={currentUser} post={post} />
+      <p>
+        <DayJS format="MM/DD/YYYY à HH:MM">{post.created_at}</DayJS>
+      </p>
+
       {currentUser && post.user.id === currentUser.id && (
         <>
           <button type="button" onClick={handleClick}>
-            EDIT
+            {(!editing && "Modifier") || "Valider"}
           </button>
 
           <button type="button" onClick={handleDelete}>
-            DELETE
+            Supprimer
           </button>
         </>
       )}

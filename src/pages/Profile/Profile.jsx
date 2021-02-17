@@ -27,7 +27,7 @@ const Profile = ({ currentUser }) => {
 
   useEffect(() => {
     fetchUserProfile();
-    dispatch(fetchPosts(userId === "me" ? currentUser.id : userId));
+    dispatch(fetchPosts(userId));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 

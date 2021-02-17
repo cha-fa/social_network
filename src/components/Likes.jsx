@@ -35,8 +35,9 @@ const Likes = ({ post, currentUser }) => {
     <div className="Likes">
       {currentUser && (
         <>
-          <p>POST ID : {post.id}</p>
-          <p>{post.like} likes</p>
+          <p>
+            {post.like} {(post.like > 1 && "likes") || "like"}
+          </p>
           <button type="button" onClick={handleClick}>
             {(liked && "UNLIKE") || "LIKE"}
           </button>
