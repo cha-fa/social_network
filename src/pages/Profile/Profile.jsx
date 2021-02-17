@@ -7,14 +7,21 @@ import PostList from "components/PostList";
 import EditProfile from "./EditProfile";
 
 const Profile = ({ currentUser }) => {
-  const { userId } = useParams();
+  const { userSlug } = useParams();
   const [user, setUser] = useState(currentUser);
   const [editing, setEditing] = useState(false);
   const posts = useSelector((state) => state.posts);
   const dispatch = useDispatch();
 
   const fetchUserProfile = () => {
-    fetch(`http://localhost:1337/users/${userId}`, {
+    let url;
+    if (!userSlug) {
+      url = `http://localhost:1337/users/me`;
+    } else {
+      url = `http://localhost:1337/users?slug=${userSlug}`;
+    }
+
+    fetch(url, {
       method: "get",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -27,9 +34,9 @@ const Profile = ({ currentUser }) => {
 
   useEffect(() => {
     fetchUserProfile();
-    dispatch(fetchPosts(userId));
+    dispatch(fetchPosts(userSlug ? userSlug : user.slug));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId]);
+  }, [userSlug]);
 
   return (
     <div className="Profile">

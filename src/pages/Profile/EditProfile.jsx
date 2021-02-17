@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEditProfile } from "redux/authentication/authMiddleware";
+import slugify from "slugify";
 
 const EditProfile = () => {
   const loginInfo = useSelector((state) => state.auth);
@@ -14,6 +15,7 @@ const EditProfile = () => {
     const userData = {
       username: username,
       description: description,
+      slug: slugify(username),
     };
     dispatch(fetchEditProfile(userData));
   };

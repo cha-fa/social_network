@@ -13,13 +13,13 @@ import {
 
 import Cookies from "js-cookie";
 
-export const fetchPosts = (userID) => {
+export const fetchPosts = (userSlug) => {
   return (dispatch) => {
     let postsURL = "http://localhost:1337/posts?_sort=created_at:DESC";
     let countURL = "http://localhost:1337/posts/count?_sort=created_at:DESC";
-    if (userID) {
-      postsURL = `http://localhost:1337/posts?_sort=created_at:DESC&user.id=${userID}`;
-      countURL = `http://localhost:1337/posts/count?_sort=created_at:DESC&user.id=${userID}`;
+    if (userSlug) {
+      postsURL = `http://localhost:1337/posts?_sort=created_at:DESC&user.slug=${userSlug}`;
+      countURL = `http://localhost:1337/posts/count?_sort=created_at:DESC&user.slug=${userSlug}`;
     }
 
     dispatch(fetchPostsRequest());
@@ -78,7 +78,6 @@ export const fetchEditPost = (text, postID) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("EDITING RESPONSE", response);
         if (response) {
           dispatch(editPost(response));
         }
@@ -97,7 +96,6 @@ export const fetchDeletePost = (postID) => {
     })
       .then((response) => response.json())
       .then((response) => {
-        console.log("DELETE RESPONSE", response);
         if (response) {
           dispatch(deletePost(response));
         }
@@ -108,7 +106,6 @@ export const fetchDeletePost = (postID) => {
 export const fetchEditLikes = (isLiked, currentLikes, postID) => {
   return (dispatch) => {
     let like;
-    console.log("BASE LIKE", currentLikes, "IS LIKED", isLiked);
     if (isLiked) {
       like = { like: currentLikes + 1 };
     } else {
@@ -125,7 +122,6 @@ export const fetchEditLikes = (isLiked, currentLikes, postID) => {
       .then((response) => response.json())
       .then((response) => {
         if (response && isLiked) {
-          console.log("RESPONSE IN LIKED", response);
           dispatch(addLike(response));
         } else if (response) {
           dispatch(removeLike(response));

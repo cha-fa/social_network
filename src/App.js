@@ -17,7 +17,7 @@ import jwt_decode from "jwt-decode";
 
 const App = () => {
   const currentUser = useSelector((state) => state.auth.user);
-  console.log(currentUser);
+
   const token = Cookies.get("token");
   const dispatch = useDispatch();
 
@@ -51,7 +51,10 @@ const App = () => {
           </Route>
           <Route path="/register" component={Registration} />
           <Route path="/login" component={Auth} />
-          <PrivateRoute path="/profile/:userId" exact>
+          <PrivateRoute path="/users/:userSlug" exact>
+            <Profile currentUser={currentUser} />
+          </PrivateRoute>
+          <PrivateRoute path="/profile">
             <Profile currentUser={currentUser} />
           </PrivateRoute>
         </Switch>

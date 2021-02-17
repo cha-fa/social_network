@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerFetch } from "redux/authentication/authMiddleware";
+const slugify = require("slugify");
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Registration = () => {
       email: email,
       password: password,
       description: description,
+      slug: slugify(username),
     };
     dispatch(registerFetch(userData));
   };

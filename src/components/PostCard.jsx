@@ -8,7 +8,6 @@ import DayJS from "react-dayjs";
 const PostCard = ({ post }) => {
   const newText = useRef();
   const [editing, setEditing] = useState(false);
-  const currentPosts = useSelector((state) => state.posts.currentPosts);
   const currentUser = useSelector((state) => state.auth.user);
   const [text, setText] = useState(post.text);
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const PostCard = ({ post }) => {
       {currentUser && (
         <>
           <li>
-            <Link to={"/profile/" + post.user.id}>{post.user.username}</Link>
+            <Link to={"/users/" + post.user.slug}>{post.user.username}</Link>
           </li>
           <Likes currentUser={currentUser} post={post} />
         </>
