@@ -16,19 +16,14 @@ import { fetchRetrieveUser } from "redux/authentication/authMiddleware";
 import jwt_decode from "jwt-decode";
 
 const App = () => {
-  const currentUser = useSelector((state) => state.user);
-  console.log("SHOW ME YOUR COOKIE", Cookies.get("token"));
+  const currentUser = useSelector((state) => state.auth.user);
+  console.log(currentUser);
   const token = Cookies.get("token");
-
   const dispatch = useDispatch();
 
-  const cookie = Cookies.get("token");
-  if (cookie && !currentUser) {
-    console.log("Cookie but not current user");
+  if (token && !currentUser) {
     const decodedToken = jwt_decode(token);
     dispatch(fetchRetrieveUser(decodedToken.id));
-  } else {
-    console.log("CURRENT USER ", currentUser);
   }
 
   const PrivateRoute = ({ component: Component, ...rest }) => (
@@ -51,7 +46,9 @@ const App = () => {
       <Router>
         <Navbar currentUser={currentUser} />
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact>
+            <Home currentUser={currentUser} />
+          </Route>
           <Route path="/register" component={Registration} />
           <Route path="/login" component={Auth} />
           <PrivateRoute path="/profile/:userId" exact>

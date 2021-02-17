@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginFetch } from "redux/authentication/authMiddleware";
+import { useHistory } from "react-router-dom";
 
-const Auth = () => {
+const Auth = ({ location }) => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const loginInfo = useSelector((state) => state);
+  const loginInfo = useSelector((state) => state.auth);
+  const history = useHistory();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -17,7 +19,15 @@ const Auth = () => {
     dispatch(loginFetch(userData));
   };
 
-  console.log(loginInfo);
+  useEffect(() => {
+    if (loginInfo.user) {
+      const path = location.previous
+        ? location.previous.location.pathname
+        : "/";
+      history.push(path);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginInfo]);
 
   return (
     <div className="Auth">

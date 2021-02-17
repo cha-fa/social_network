@@ -90,7 +90,6 @@ export const userLogout = () => {
 
 export const fetchRetrieveUser = (userID) => {
   return (dispatch) => {
-    console.log("retrieving fetch en cours");
     fetch(`http://localhost:1337/users/${userID}`, {
       method: "get",
       headers: {
@@ -101,7 +100,6 @@ export const fetchRetrieveUser = (userID) => {
       .then((response) => response.json())
       .then((response) => {
         if (response) {
-          console.log("response is", response);
           dispatch(retrieveUser(response, Cookies.get("token")));
         }
       });

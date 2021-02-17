@@ -21,6 +21,7 @@ const Profile = ({ currentUser }) => {
 
   useEffect(() => {
     fetchUserProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
   return (
@@ -33,7 +34,7 @@ const Profile = ({ currentUser }) => {
           <li>description : {user.description}</li>
         </ul>
       )}
-      {user.id === currentUser.id && <EditProfile />}
+      {user && user.id === currentUser.id && <EditProfile />}
     </div>
   );
 };

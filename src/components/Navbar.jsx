@@ -1,19 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogout } from "redux/authentication/authMiddleware";
 
 const Navbar = ({ currentUser }) => {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   const handleClick = () => {
     dispatch(userLogout());
   };
-
-  console.log(
-    "CURRENT USER IS",
-    currentUser ? currentUser : "pas de current user"
-  );
 
   return (
     <div className="Navbar">
@@ -22,7 +18,14 @@ const Navbar = ({ currentUser }) => {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/login">Auth</Link>
+          <Link
+            to={{
+              pathname: "/login",
+              previous: { location: location },
+            }}
+          >
+            Auth
+          </Link>
         </li>
         <li>
           <Link to="/register">Registration</Link>

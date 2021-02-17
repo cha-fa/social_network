@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEditProfile } from "redux/authentication/authMiddleware";
 
 const EditProfile = () => {
-  const loginInfo = useSelector((state) => state);
+  const loginInfo = useSelector((state) => state.auth);
   const currentUser = loginInfo.user;
   const [username, setUsername] = useState(currentUser.username);
   const [description, setDescription] = useState(currentUser.description);
