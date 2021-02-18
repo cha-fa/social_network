@@ -23,12 +23,15 @@ const Navbar = ({ currentUser }) => {
   return (
     <div className="Navbar">
       <ul>
-        <RiKakaoTalkLine size={100} className="mb-3" />
-        <div>
-          <BiHomeHeart size={30} className="mr-2" />
-          <Link to="/">Home</Link>
-        </div>
-
+        <header>
+          <Link to="/">
+            <RiKakaoTalkLine size={100} className="mb-3" />
+            <div>
+              <BiHomeHeart size={30} className="mr-2" />
+              Home
+            </div>
+          </Link>
+        </header>
         <div className="Authentication">
           {!currentUser && (
             <>

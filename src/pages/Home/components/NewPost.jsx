@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPost } from "redux/posts/postsMiddleware";
 import { AiOutlineSend } from "react-icons/ai";
+
 const NewPost = ({ currentUser, handleNewPost }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
@@ -13,6 +14,7 @@ const NewPost = ({ currentUser, handleNewPost }) => {
     };
     dispatch(addPost(postData));
     handleNewPost(postData);
+    setText("");
   };
 
   return (

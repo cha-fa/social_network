@@ -43,11 +43,11 @@ const RightNav = ({ currentUser }) => {
   };
 
   useEffect(() => {
-    if (!searchInput) {
+    if (searchInput && searchInput.length < 1) {
       setKeywordPosts([]);
-      return;
+    } else {
+      fetchSearch();
     }
-    fetchSearch();
   }, [searchInput]);
 
   useEffect(() => {
@@ -60,34 +60,38 @@ const RightNav = ({ currentUser }) => {
 
   return (
     <div className="RightNav ">
-      <div className="mb-5 mt-5">
-        Looking for something?
-        <input
-          onChange={(event) => setSearchInput(event.target.value)}
-          type="text"
-        />
-        <ul className="m-0 p-0">
-          {keywordPosts &&
-            keywordPosts.map((post) => <PostCard key={post.id} post={post} />)}
-        </ul>
-      </div>
-      {currentUser && (
-        <div>
-          Looking for someone?
+      <form>
+        <div className="mb-5 mt-5">
+          Looking for something?
           <input
-            onChange={(event) => setSearchInputUser(event.target.value)}
+            onChange={(event) => setSearchInput(event.target.value)}
             type="text"
           />
           <ul className="m-0 p-0">
-            {keywordUsers &&
-              keywordUsers.map((user) => (
-                <p>
-                  <Link to={"/users/" + user.slug}>@{user.username}</Link>
-                </p>
+            {keywordPosts &&
+              keywordPosts.map((post) => (
+                <PostCard key={post.id} post={post} />
               ))}
           </ul>
         </div>
-      )}
+        {currentUser && (
+          <div>
+            Looking for someone?
+            <input
+              onChange={(event) => setSearchInputUser(event.target.value)}
+              type="text"
+            />
+            <ul className="m-0 p-0">
+              {keywordUsers &&
+                keywordUsers.map((user) => (
+                  <p>
+                    <Link to={"/users/" + user.slug}>@{user.username}</Link>
+                  </p>
+                ))}
+            </ul>
+          </div>
+        )}
+      </form>
     </div>
   );
 };

@@ -9,13 +9,17 @@
   max-width: 100%;
   min-height: 100vh;
 
+  header {
+    position: fixed;
+    top: 0;
+  }
   a {
     text-decoration: none;
     color: $title-color;
   }
 
   .Authentication {
-    position: absolute;
+    position: fixed;
     bottom: 5%;
 
     p {

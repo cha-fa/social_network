@@ -1,10 +1,9 @@
 import PostCard from "./PostCard";
 import { useEffect } from "react";
-const PostList = ({ posts, newPost }) => {
-  console.log("post");
 
+const PostList = ({ posts, newPost }) => {
   useEffect(() => {
-    console.log("new post");
+    console.log("new post has been published");
   }, [posts, newPost]);
 
   return (

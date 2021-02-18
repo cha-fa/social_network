@@ -40,13 +40,6 @@ h5 {
     flex-direction: column;
     background-color: white;
   }
-
-  .RightNav {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    border-left: 2px solid #ffffff;
-  }
 }
 
 .Jumbotron {
@@ -189,21 +182,24 @@ h5 {
 
 .RightNav {
   width: 100%;
-  display: flex;
-  flex-direction: column;
   padding: 15px;
   text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-left: 2px solid #ffffff;
 
   .PostCard {
     background-color: white;
   }
 
   input {
-    border: 2px solid white;
+    border: 1px solid $text-color;
     border-radius: 20px;
     box-sizing: border-box;
     padding: 15px;
     width: 75%;
+    margin-top: 15px;
   }
   a {
     text-decoration: none;
@@ -214,5 +210,10 @@ h5 {
       color: $text-color;
       cursor: pointer;
     }
+  }
+
+  form {
+    position: fixed;
+    top: 0;
   }
 }
