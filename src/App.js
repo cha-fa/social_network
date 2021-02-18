@@ -30,7 +30,7 @@ const App = () => {
 
   return (
     <container className="SocialApp">
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Navbar currentUser={currentUser} />
         <Switch>
           <Route path="/" exact>
