@@ -5,8 +5,7 @@ import { fetchPosts } from "redux/posts/postsMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import PostList from "components/PostList";
 import EditProfile from "./EditProfile";
-import Jumbotron from "pages/Home/components/Jumbotron";
-
+import { BiUserCircle } from "react-icons/bi";
 const Profile = ({ currentUser }) => {
   const { userSlug } = useParams();
   const [user, setUser] = useState(currentUser);
@@ -30,7 +29,7 @@ const Profile = ({ currentUser }) => {
       },
     })
       .then((response) => response.json())
-      .then((response) => setUser(response));
+      .then((response) => setUser(response[0]));
   };
 
   useEffect(() => {
@@ -41,13 +40,20 @@ const Profile = ({ currentUser }) => {
 
   return (
     <div className="Profile">
-      <Jumbotron />
-      Page profile
+      <h4>
+        <BiUserCircle size={50} className="mr-2" />
+        {user.username}
+      </h4>
       {user && (
         <ul>
-          <li>username: {user.username}</li>
-          <li>email: {user.email}</li>
-          <li>description : {user.description}</li>
+          <h5>Email:</h5>
+          <p>{user.email}</p>
+          {user.description && (
+            <>
+              <h5>Bio: </h5>
+              <p>{user.description}</p>
+            </>
+          )}
         </ul>
       )}
       {user && user.id === currentUser.id && editing && <EditProfile />}
