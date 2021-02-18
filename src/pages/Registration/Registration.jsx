@@ -1,12 +1,13 @@
 import Jumbotron from "pages/Home/components/Jumbotron";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerFetch } from "redux/authentication/authMiddleware";
+import { useHistory } from "react-router-dom";
 
 const Registration = () => {
   const dispatch = useDispatch();
   const register = useSelector((state) => state);
-
+  const history = useHistory();
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -19,6 +20,7 @@ const Registration = () => {
       password: password,
     };
     dispatch(registerFetch(userData));
+    history.push("/");
   };
 
   return (

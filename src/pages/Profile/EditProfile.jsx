@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchEditProfile } from "redux/authentication/authMiddleware";
+import { AiOutlineCheckSquare } from "react-icons/ai";
 
 const EditProfile = () => {
   const loginInfo = useSelector((state) => state.auth);
@@ -9,8 +10,7 @@ const EditProfile = () => {
   const [description, setDescription] = useState(currentUser.description);
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleClick = () => {
     const userData = {
       username: username,
       description: description,
@@ -18,13 +18,11 @@ const EditProfile = () => {
     dispatch(fetchEditProfile(userData));
   };
 
-  console.log(loginInfo);
   return (
     <div className="EditProfile">
-      Modifier mon profil :
-      <form onSubmit={handleSubmit}>
+      <form>
         <div>
-          <label for="username">Username</label>
+          <label for="username">Username:</label>
           <input
             type="text"
             required
@@ -33,7 +31,7 @@ const EditProfile = () => {
           />
         </div>
         <div>
-          <label for="description">description :</label>
+          <label for="description">Bio:</label>
           <textarea
             type="text"
             required
@@ -42,7 +40,7 @@ const EditProfile = () => {
           />
         </div>
 
-        <input type="submit" value="Valider les changements"></input>
+        <AiOutlineCheckSquare size={30} onClick={handleClick} />
       </form>
       {loginInfo.error && <p> Erreur : {loginInfo.error}</p>}
     </div>

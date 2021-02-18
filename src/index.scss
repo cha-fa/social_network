@@ -7,6 +7,7 @@ body {
   font-family: text-font-family;
   font-size: 18px;
   box-sizing: border-box;
+  background-color: $background-color;
 }
 
 #root {
@@ -133,6 +134,9 @@ h5 {
   }
 }
 
+.PostList {
+  background-color: white;
+}
 .PostCard {
   margin-bottom: 60px;
   width: 100%;
@@ -176,5 +180,39 @@ h5 {
   margin-top: 50px;
   svg {
     cursor: pointer;
+  }
+}
+
+.Profile svg {
+  cursor: pointer;
+}
+
+.RightNav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  text-align: center;
+
+  .PostCard {
+    background-color: white;
+  }
+
+  input {
+    border: 2px solid white;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 15px;
+    width: 75%;
+  }
+  a {
+    text-decoration: none;
+    color: $title-color;
+    font-weight: bold !important;
+    font-family: $title-font-family;
+    &:hover {
+      color: $text-color;
+      cursor: pointer;
+    }
   }
 }

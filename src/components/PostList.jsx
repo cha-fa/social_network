@@ -1,6 +1,12 @@
 import PostCard from "./PostCard";
+import { useEffect } from "react";
+const PostList = ({ posts, newPost }) => {
+  console.log("post");
 
-const PostList = ({ posts }) => {
+  useEffect(() => {
+    console.log("new post");
+  }, [posts, newPost]);
+
   return (
     <div className="PostList">
       <div className="d-flex justify-content-end mr-2">

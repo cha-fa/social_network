@@ -16,11 +16,7 @@ const Home = ({ currentUser }) => {
 
   useEffect(() => {
     dispatch(fetchPosts());
-    const interval = setInterval(() => {
-      dispatch(fetchPosts());
-      console.log("This will run every 60 second!");
-    }, 60000);
-    return () => clearInterval(interval);
+    console.log("Ishould rerender");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newPost]);
 
@@ -29,7 +25,7 @@ const Home = ({ currentUser }) => {
       {(currentUser && (
         <NewPost currentUser={currentUser} handleNewPost={handleNewPost} />
       )) || <Jumbotron />}
-      <PostList posts={posts} />
+      <PostList posts={posts} newPost={newPost} />
     </div>
   );
 };

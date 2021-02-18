@@ -45,7 +45,7 @@ const App = () => {
             <Profile currentUser={currentUser} />
           </PrivateRoute>
         </Switch>
-        <RightNav />
+        <RightNav currentUser={currentUser} />
       </Router>
     </container>
   );

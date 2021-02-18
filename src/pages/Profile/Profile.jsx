@@ -6,6 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import PostList from "components/PostList";
 import EditProfile from "./EditProfile";
 import { BiUserCircle } from "react-icons/bi";
+
+import {
+  AiOutlineCheckSquare,
+  AiOutlineEdit,
+  AiOutlineDelete,
+} from "react-icons/ai";
+
 const Profile = ({ currentUser }) => {
   const { userSlug } = useParams();
   const [user, setUser] = useState(currentUser);
@@ -16,6 +23,7 @@ const Profile = ({ currentUser }) => {
   const fetchUserProfile = () => {
     let url;
     if (!userSlug) {
+      console.log("NO USER SLUG");
       url = `http://thp-strapi-social-network.herokuapp.com/users/me`;
     } else {
       url = `http://thp-strapi-social-network.herokuapp.com/users?slug=${userSlug}`;
@@ -33,34 +41,42 @@ const Profile = ({ currentUser }) => {
   };
 
   useEffect(() => {
-    fetchUserProfile();
-    dispatch(fetchPosts(userSlug ? userSlug : user.slug));
+    if (!userSlug) {
+      setUser(currentUser);
+      dispatch(fetchPosts(currentUser.slug));
+    } else {
+      fetchUserProfile();
+      dispatch(fetchPosts(userSlug));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userSlug]);
 
   return (
     <div className="Profile">
-      <h4>
-        <BiUserCircle size={50} className="mr-2" />
-        {user.username}
-      </h4>
       {user && (
-        <ul>
-          <h5>Email:</h5>
-          <p>{user.email}</p>
-          {user.description && (
-            <>
-              <h5>Bio: </h5>
-              <p>{user.description}</p>
-            </>
-          )}
-        </ul>
+        <>
+          <h4>
+            <BiUserCircle size={50} className="mr-2" />
+            {user.username}
+          </h4>
+
+          <ul>
+            <h5>Email:</h5>
+            <p>{user.email}</p>
+            {user.description && (
+              <>
+                <h5>Bio: </h5>
+                <p>{user.description}</p>
+              </>
+            )}
+          </ul>
+        </>
       )}
       {user && user.id === currentUser.id && editing && <EditProfile />}
       {user && user.id === currentUser.id && !editing && (
-        <button type="button" onClick={() => setEditing(!editing)}>
-          EDITER
-        </button>
+        <span>
+          <AiOutlineEdit size={30} onClick={() => setEditing(!editing)} />
+        </span>
       )}
       <PostList posts={posts} />
     </div>
