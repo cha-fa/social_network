@@ -11,7 +11,7 @@ import {
 export const registerFetch = (userData) => {
   return (dispatch) => {
     const registerURL =
-      "http://thp-strapi-social-network.herokuapp.com/auth/local/register";
+      "https://thp-strapi-social-network.herokuapp.com/auth/local/register";
 
     fetch(registerURL, {
       method: "post",
@@ -40,7 +40,7 @@ export const registerFetch = (userData) => {
 export const loginFetch = (userData) => {
   return (dispatch) => {
     const loginURL =
-      "http://thp-strapi-social-network.herokuapp.com/auth/local";
+      "https://thp-strapi-social-network.herokuapp.com/auth/local";
 
     fetch(loginURL, {
       method: "post",
@@ -68,7 +68,7 @@ export const loginFetch = (userData) => {
 
 export const fetchEditProfile = (userData) => {
   return (dispatch) => {
-    const loginURL = "http://thp-strapi-social-network.herokuapp.com/users/me";
+    const loginURL = "https://thp-strapi-social-network.herokuapp.com/users/me";
 
     fetch(loginURL, {
       method: "put",

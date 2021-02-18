@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/" exact>
             <Home currentUser={currentUser} />
           </Route>
-          <Route path="/social_network">
+          <Route path="/social_network/">
             <Home currentUser={currentUser} />
           </Route>
           <Route path="/register" component={Registration} />

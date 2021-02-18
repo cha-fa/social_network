@@ -14,12 +14,12 @@ import Cookies from "js-cookie";
 export const fetchPosts = (userSlug) => {
   return (dispatch) => {
     let postsURL =
-      "http://thp-strapi-social-network.herokuapp.com/posts?_sort=created_at:DESC";
+      "https://thp-strapi-social-network.herokuapp.com/posts?_sort=created_at:DESC";
     let countURL =
-      "http://thp-strapi-social-network.herokuapp.com/posts/count?_sort=created_at:DESC";
+      "https://thp-strapi-social-network.herokuapp.com/posts/count?_sort=created_at:DESC";
     if (userSlug) {
-      postsURL = `http://thp-strapi-social-network.herokuapp.com/posts?_sort=created_at:DESC&user.slug=${userSlug}`;
-      countURL = `http://thp-strapi-social-network.herokuapp.com/posts/count?_sort=created_at:DESC&user.slug=${userSlug}`;
+      postsURL = `https://thp-strapi-social-network.herokuapp.com/posts?_sort=created_at:DESC&user.slug=${userSlug}`;
+      countURL = `https://thp-strapi-social-network.herokuapp.com/posts/count?_sort=created_at:DESC&user.slug=${userSlug}`;
     }
 
     dispatch(fetchPostsRequest());
@@ -69,7 +69,7 @@ export const addPost = (postData) => {
 
 export const fetchEditPost = (text, postID) => {
   return (dispatch) => {
-    fetch(`http://thp-strapi-social-network.herokuapp.com/posts/${postID}`, {
+    fetch(`https://thp-strapi-social-network.herokuapp.com/posts/${postID}`, {
       method: "put",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -88,7 +88,7 @@ export const fetchEditPost = (text, postID) => {
 
 export const fetchDeletePost = (postID) => {
   return (dispatch) => {
-    fetch(`http://thp-strapi-social-network.herokuapp.com/posts/${postID}`, {
+    fetch(`https://thp-strapi-social-network.herokuapp.com/posts/${postID}`, {
       method: "delete",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -120,7 +120,7 @@ export const fetchEditLikes = (isLiked, post, user) => {
       likedUsers: newLikedUsers,
     };
 
-    fetch(`http://thp-strapi-social-network.herokuapp.com/posts/${post.id}`, {
+    fetch(`https://thp-strapi-social-network.herokuapp.com/posts/${post.id}`, {
       method: "put",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,

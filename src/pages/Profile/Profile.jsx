@@ -24,9 +24,9 @@ const Profile = ({ currentUser }) => {
     let url;
     if (!userSlug) {
       console.log("NO USER SLUG");
-      url = `http://thp-strapi-social-network.herokuapp.com/users/me`;
+      url = `https://thp-strapi-social-network.herokuapp.com/users/me`;
     } else {
-      url = `http://thp-strapi-social-network.herokuapp.com/users?slug=${userSlug}`;
+      url = `https://thp-strapi-social-network.herokuapp.com/users?slug=${userSlug}`;
     }
 
     fetch(url, {
