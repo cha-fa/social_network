@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.22bb4f05.chunk.css",
+    "main.js": "/static/js/main.bc1b84f0.chunk.js",
+    "main.js.map": "/static/js/main.bc1b84f0.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.bcba22ab.js",
+    "runtime-main.js.map": "/static/js/runtime-main.bcba22ab.js.map",
+    "static/css/2.150d169a.chunk.css": "/static/css/2.150d169a.chunk.css",
+    "static/js/2.7338b78d.chunk.js": "/static/js/2.7338b78d.chunk.js",
+    "static/js/2.7338b78d.chunk.js.map": "/static/js/2.7338b78d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.150d169a.chunk.css.map": "/static/css/2.150d169a.chunk.css.map",
+    "static/css/main.22bb4f05.chunk.css.map": "/static/css/main.22bb4f05.chunk.css.map",
+    "static/js/2.7338b78d.chunk.js.LICENSE.txt": "/static/js/2.7338b78d.chunk.js.LICENSE.txt",
+    "static/media/navbar.scss": "/static/media/metropolis-regular.67a1988d.otf",
+    "static/media/index.scss": "/static/media/background_image.d1035882.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bcba22ab.js",
+    "static/css/2.150d169a.chunk.css",
+    "static/js/2.7338b78d.chunk.js",
+    "static/css/main.22bb4f05.chunk.css",
+    "static/js/main.bc1b84f0.chunk.js"
+  ]
+}
