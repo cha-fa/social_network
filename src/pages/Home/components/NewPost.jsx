@@ -31,7 +31,7 @@ const NewPost = ({ currentUser, handleNewPost }) => {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <input type="submit" value="Sign in"></input>
+        <input type="submit" value="Publish"></input>
       </form>
     </div>
   );

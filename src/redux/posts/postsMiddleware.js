@@ -46,7 +46,7 @@ export const fetchPosts = (userSlug) => {
 
 export const addPost = (postData) => {
   return (dispatch) => {
-    const addURL = "http://thp-strapi-social-network.herokuapp.com/posts";
+    const addURL = "https://thp-strapi-social-network.herokuapp.com/posts";
     fetch(addURL, {
       method: "post",
       headers: {

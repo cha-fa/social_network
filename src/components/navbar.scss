@@ -7,6 +7,7 @@
   font-family: $title-font-family;
   font-size: 20px;
   max-width: 100%;
+  min-height: 100vh;
 
   a {
     text-decoration: none;
@@ -28,6 +29,10 @@
 
     a {
       font-weight: bold;
+      &:hover {
+        color: $text-color;
+        cursor: pointer;
+      }
     }
 
     span {

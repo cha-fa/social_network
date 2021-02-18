@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Likes from "./Likes";
 import DayJS from "react-dayjs";
+import {
+  AiOutlineCheckSquare,
+  AiOutlineEdit,
+  AiOutlineDelete,
+} from "react-icons/ai";
 
 const PostCard = ({ post }) => {
   const newText = useRef();
@@ -31,31 +36,43 @@ const PostCard = ({ post }) => {
   return (
     <div className="PostCard">
       {currentUser && (
-        <>
-          <li>
-            <Link to={"/users/" + post.user.slug}>{post.user.username}</Link>
-          </li>
-          <Likes currentUser={currentUser} post={post} />
-        </>
+        <div>
+          <Link to={"/users/" + post.user.slug}>@{post.user.username}</Link>
+        </div>
       )}
-      {(!editing && <p>{text}</p>) || (
+
+      {(currentUser && currentUser.id === post.user.id && editing && (
         <input ref={newText} placeholder={text} defaultValue={text} />
-      )}
-      <p>
+      )) ||
+        (currentUser && (
+          <div className="PostCard_content">
+            {<p>{text}</p>} <Likes currentUser={currentUser} post={post} />
+          </div>
+        )) || <p>{text}</p>}
+
+      <div className="PostCard_footer">
         <DayJS format="MM/DD/YYYY à HH:MM">{post.created_at}</DayJS>
-      </p>
 
-      {currentUser && post.user.id === currentUser.id && (
-        <>
-          <button type="button" onClick={handleClick}>
-            {(!editing && "Modifier") || "Valider"}
-          </button>
+        {currentUser && post.user.id === currentUser.id && (
+          <>
+            {(!editing && (
+              <span className="ml-3">
+                <AiOutlineEdit size={30} onClick={handleClick} />
+              </span>
+            )) || (
+              <span className="ml-3">
+                <AiOutlineCheckSquare onClick={handleClick} size={30} />
+              </span>
+            )}
 
-          <button type="button" onClick={handleDelete}>
-            Supprimer
-          </button>
-        </>
-      )}
+            <AiOutlineDelete
+              className="ml-3"
+              size={30}
+              onClick={handleDelete}
+            />
+          </>
+        )}
+      </div>
     </div>
   );
 };

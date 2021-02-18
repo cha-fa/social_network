@@ -75,7 +75,7 @@ h5 {
 
     &:hover {
       text-decoration: none;
-      color: #ff48c5;
+      color: $title-color;
     }
   }
 }
@@ -117,8 +117,48 @@ h5 {
       margin-top: 20px;
 
       &:hover {
-        background-color: #ff48c5;
+        background-color: $title-color;
       }
+    }
+  }
+}
+
+.Likes {
+  color: $title-color;
+}
+
+.Home {
+  background-color: white;
+
+  svg {
+    cursor: pointer;
+  }
+
+  .PostCard {
+    margin-bottom: 60px;
+    width: 100%;
+    background-color: $background-color;
+    padding: 40px 60px 40px;
+
+    a {
+      text-decoration: none;
+      color: $title-color;
+      font-weight: bold !important;
+      font-family: $title-font-family;
+      &:hover {
+        color: $text-color;
+        cursor: pointer;
+      }
+    }
+    .PostCard_content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .PostCard_footer {
+      color: $text-muted-color !important;
     }
   }
 }

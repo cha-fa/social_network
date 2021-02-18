@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { fetchEditLikes } from "redux/posts/postsMiddleware";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const Likes = ({ post, currentUser }) => {
   const alreadyLiked =
@@ -17,23 +18,16 @@ const Likes = ({ post, currentUser }) => {
   };
 
   return (
-    <div className="Likes">
+    <span className="Likes">
       {currentUser && (
         <>
-          <p>
-            {post.like} {post.likedUsers.length}{" "}
-            {(post.like > 1 && "likes") || "like"}
-          </p>
-          <p>
-            STATE {liked ? "is liked" : "not liked"} users :{" "}
-            {post.likedUsers.length}
-          </p>
-          <button type="button" onClick={handleClick}>
-            {(liked && "UNLIKE") || "LIKE"}
-          </button>
+          {(liked && <AiFillHeart size={30} onClick={handleClick} />) || (
+            <AiOutlineHeart size={30} onClick={handleClick} />
+          )}{" "}
+          {post.likedUsers.length}
         </>
       )}
-    </div>
+    </span>
   );
 };
 
