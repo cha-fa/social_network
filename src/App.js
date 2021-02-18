@@ -1,5 +1,5 @@
 import Navbar from "components/Navbar";
-import Auth from "pages/Auth/Auth";
+import Login from "pages/Login/Login";
 import Home from "pages/Home/Home";
 import Profile from "pages/Profile/Profile";
 import Registration from "pages/Registration/Registration";
@@ -9,22 +9,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import Cookies from "js-cookie";
-import { fetchRetrieveUser } from "redux/authentication/authMiddleware";
-
-import jwt_decode from "jwt-decode";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const currentUser = useSelector((state) => state.auth.user);
-
-  const token = Cookies.get("token");
-  const dispatch = useDispatch();
-
-  if (token && !currentUser) {
-    const decodedToken = jwt_decode(token);
-    dispatch(fetchRetrieveUser(decodedToken.id));
-  }
 
   const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
@@ -50,7 +38,7 @@ const App = () => {
             <Home currentUser={currentUser} />
           </Route>
           <Route path="/register" component={Registration} />
-          <Route path="/login" component={Auth} />
+          <Route path="/login" component={Login} />
           <PrivateRoute path="/users/:userSlug" exact>
             <Profile currentUser={currentUser} />
           </PrivateRoute>

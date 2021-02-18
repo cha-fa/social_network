@@ -7,19 +7,19 @@ import {
   addPostSuccess,
   editPost,
   deletePost,
-  addLike,
-  removeLike,
 } from "./postsActions";
 
 import Cookies from "js-cookie";
 
 export const fetchPosts = (userSlug) => {
   return (dispatch) => {
-    let postsURL = "http://localhost:1337/posts?_sort=created_at:DESC";
-    let countURL = "http://localhost:1337/posts/count?_sort=created_at:DESC";
+    let postsURL =
+      "http://thp-strapi-social-network.herokuapp.com/posts?_sort=created_at:DESC";
+    let countURL =
+      "http://thp-strapi-social-network.herokuapp.com/posts/count?_sort=created_at:DESC";
     if (userSlug) {
-      postsURL = `http://localhost:1337/posts?_sort=created_at:DESC&user.slug=${userSlug}`;
-      countURL = `http://localhost:1337/posts/count?_sort=created_at:DESC&user.slug=${userSlug}`;
+      postsURL = `http://thp-strapi-social-network.herokuapp.com/posts?_sort=created_at:DESC&user.slug=${userSlug}`;
+      countURL = `http://thp-strapi-social-network.herokuapp.com/posts/count?_sort=created_at:DESC&user.slug=${userSlug}`;
     }
 
     dispatch(fetchPostsRequest());
@@ -46,7 +46,7 @@ export const fetchPosts = (userSlug) => {
 
 export const addPost = (postData) => {
   return (dispatch) => {
-    const addURL = "http://localhost:1337/posts";
+    const addURL = "http://thp-strapi-social-network.herokuapp.com/posts";
     fetch(addURL, {
       method: "post",
       headers: {
@@ -68,7 +68,7 @@ export const addPost = (postData) => {
 
 export const fetchEditPost = (text, postID) => {
   return (dispatch) => {
-    fetch(`http://localhost:1337/posts/${postID}`, {
+    fetch(`http://thp-strapi-social-network.herokuapp.com/posts/${postID}`, {
       method: "put",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -87,7 +87,7 @@ export const fetchEditPost = (text, postID) => {
 
 export const fetchDeletePost = (postID) => {
   return (dispatch) => {
-    fetch(`http://localhost:1337/posts/${postID}`, {
+    fetch(`http://thp-strapi-social-network.herokuapp.com/posts/${postID}`, {
       method: "delete",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
@@ -103,28 +103,34 @@ export const fetchDeletePost = (postID) => {
   };
 };
 
-export const fetchEditLikes = (isLiked, currentLikes, postID) => {
+export const fetchEditLikes = (isLiked, post, user) => {
   return (dispatch) => {
-    let like;
+    let newLikedUsers;
     if (isLiked) {
-      like = { like: currentLikes + 1 };
+      newLikedUsers = [...post.likedUsers, user];
     } else {
-      like = { like: currentLikes - 1 };
+      newLikedUsers = post.likedUsers.filter(
+        (likedUser) => likedUser.id !== user.id
+      );
     }
-    fetch(`http://localhost:1337/posts/${postID}`, {
+
+    const dataLike = {
+      like: newLikedUsers.length,
+      likedUsers: newLikedUsers,
+    };
+
+    fetch(`http://thp-strapi-social-network.herokuapp.com/posts/${post.id}`, {
       method: "put",
       headers: {
         Authorization: `Bearer ${Cookies.get("token")}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(like),
+      body: JSON.stringify(dataLike),
     })
       .then((response) => response.json())
       .then((response) => {
-        if (response && isLiked) {
-          dispatch(addLike(response));
-        } else if (response) {
-          dispatch(removeLike(response));
+        if (!response.error) {
+          dispatch(editPost(response));
         }
       });
   };

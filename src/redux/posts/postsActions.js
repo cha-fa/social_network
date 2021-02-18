@@ -7,8 +7,6 @@ import {
   ADD_POST_ERROR,
   EDIT_POST,
   DELETE_POST,
-  REMOVE_LIKE,
-  ADD_LIKE,
 } from "./postsTypes";
 
 export const fetchPostsRequest = () => {
@@ -62,20 +60,6 @@ export const editPost = (post) => {
 export const deletePost = (post) => {
   return {
     type: DELETE_POST,
-    post,
-  };
-};
-
-export const addLike = (post) => {
-  return {
-    type: ADD_LIKE,
-    post,
-  };
-};
-
-export const removeLike = (post) => {
-  return {
-    type: REMOVE_LIKE,
     post,
   };
 };

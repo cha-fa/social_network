@@ -16,9 +16,9 @@ const Profile = ({ currentUser }) => {
   const fetchUserProfile = () => {
     let url;
     if (!userSlug) {
-      url = `http://localhost:1337/users/me`;
+      url = `http://thp-strapi-social-network.herokuapp.com/users/me`;
     } else {
-      url = `http://localhost:1337/users?slug=${userSlug}`;
+      url = `http://thp-strapi-social-network.herokuapp.com/users?slug=${userSlug}`;
     }
 
     fetch(url, {

@@ -5,7 +5,6 @@ import {
   LOGIN_FAILURE,
   LOGOUT,
   EDIT_PROFILE,
-  RETRIEVE_USER,
 } from "./authTypes";
 
 export const registerFailure = (error) => {
@@ -48,13 +47,5 @@ export const editProfile = (user) => {
   return {
     type: EDIT_PROFILE,
     user,
-  };
-};
-
-export const retrieveUser = (user, token) => {
-  return {
-    type: RETRIEVE_USER,
-    user,
-    token,
   };
 };

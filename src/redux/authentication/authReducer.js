@@ -5,13 +5,15 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   EDIT_PROFILE,
-  RETRIEVE_USER,
 } from "./authTypes";
+
+let userObj = JSON.parse(localStorage.getItem("thp_social_network_user_obj"));
+const initialUser = userObj ? userObj.user : null;
 
 const initialState = {
   token: null,
-  user: null,
-  isLoggedIn: false,
+  user: initialUser,
+  isLoggedIn: initialUser ? true : false,
   error: null,
 };
 
@@ -43,13 +45,6 @@ const authReducer = (state = initialState, action) => {
         user: null,
       };
     case EDIT_PROFILE:
-      return {
-        ...state,
-        user: action.user,
-        token: action.token,
-        isLoggedIn: true,
-      };
-    case RETRIEVE_USER:
       return {
         ...state,
         user: action.user,

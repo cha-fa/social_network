@@ -56,9 +56,7 @@ const postsReducer = (state = initialState, action) => {
       return {
         ...state,
         currentPosts: state.currentPosts.map((post) =>
-          post.id === action.post.id
-            ? { ...post, text: action.post.text }
-            : post
+          post.id === action.post.id ? action.post : post
         ),
       };
     case DELETE_POST:
@@ -68,20 +66,7 @@ const postsReducer = (state = initialState, action) => {
           (post) => post.id !== action.post.id
         ),
       };
-    case ADD_LIKE:
-      return {
-        ...state,
-        currentPosts: state.currentPosts.map((post) =>
-          post.id === action.post.id ? { ...post, like: post.like + 1 } : post
-        ),
-      };
-    case REMOVE_LIKE:
-      return {
-        ...state,
-        currentPosts: state.currentPosts.map((post) =>
-          post.id === action.post.id ? { ...post, like: post.like - 1 } : post
-        ),
-      };
+
     default:
       return state;
   }

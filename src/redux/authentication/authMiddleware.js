@@ -6,12 +6,12 @@ import {
   loginSuccess,
   logout,
   editProfile,
-  retrieveUser,
 } from "./authActions";
 
 export const registerFetch = (userData) => {
   return (dispatch) => {
-    const registerURL = "http://localhost:1337/auth/local/register";
+    const registerURL =
+      "http://thp-strapi-social-network.herokuapp.com/auth/local/register";
 
     fetch(registerURL, {
       method: "post",
@@ -25,7 +25,10 @@ export const registerFetch = (userData) => {
         if (response.jwt) {
           Cookies.set("token", response.jwt);
           dispatch(registerSuccess(response.user, response.jwt));
-          console.log("register worked !");
+          localStorage.setItem(
+            "thp_social_network_user_obj",
+            JSON.stringify(response)
+          );
         } else {
           dispatch(registerFailure(response.message[0].messages[0].message));
         }
@@ -35,7 +38,8 @@ export const registerFetch = (userData) => {
 
 export const loginFetch = (userData) => {
   return (dispatch) => {
-    const loginURL = "http://localhost:1337/auth/local";
+    const loginURL =
+      "http://thp-strapi-social-network.herokuapp.com/auth/local";
 
     fetch(loginURL, {
       method: "post",
@@ -49,9 +53,11 @@ export const loginFetch = (userData) => {
         if (response.jwt) {
           Cookies.set("token", response.jwt);
           dispatch(loginSuccess(response.user, response.jwt));
-          console.log("login worked !");
+          localStorage.setItem(
+            "thp_social_network_user_obj",
+            JSON.stringify(response)
+          );
         } else {
-          console.log("ERREUR", response.message[0].messages[0].message);
           dispatch(loginFailure(response.message[0].messages[0].message));
         }
       });
@@ -60,7 +66,7 @@ export const loginFetch = (userData) => {
 
 export const fetchEditProfile = (userData) => {
   return (dispatch) => {
-    const loginURL = "http://localhost:1337/users/me";
+    const loginURL = "http://thp-strapi-social-network.herokuapp.com/users/me";
 
     fetch(loginURL, {
       method: "put",
@@ -74,7 +80,6 @@ export const fetchEditProfile = (userData) => {
       .then((response) => {
         if (response) {
           dispatch(editProfile(response));
-          console.log("edit worked !");
         }
       });
   };
@@ -85,23 +90,5 @@ export const userLogout = () => {
     Cookies.remove("token");
     dispatch(logout());
     console.log("USER WAS LOGGED OUT");
-  };
-};
-
-export const fetchRetrieveUser = (userID) => {
-  return (dispatch) => {
-    fetch(`http://localhost:1337/users/${userID}`, {
-      method: "get",
-      headers: {
-        Authorization: `Bearer ${Cookies.get("token")}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response) {
-          dispatch(retrieveUser(response, Cookies.get("token")));
-        }
-      });
   };
 };

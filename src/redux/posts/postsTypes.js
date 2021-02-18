@@ -6,5 +6,3 @@ export const ADD_POST_SUCCESS = "ADD_POST_SUCCESS";
 export const ADD_POST_ERROR = "ADD_POST_ERROR";
 export const EDIT_POST = "EDIT_POST";
 export const DELETE_POST = "DELETE_POST";
-export const ADD_LIKE = "ADD_LIKE";
-export const REMOVE_LIKE = "REMOVE_LIKE";
