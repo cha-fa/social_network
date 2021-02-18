@@ -5,6 +5,7 @@ import { fetchPosts } from "redux/posts/postsMiddleware";
 import { useDispatch, useSelector } from "react-redux";
 import PostList from "components/PostList";
 import EditProfile from "./EditProfile";
+import Jumbotron from "pages/Home/components/Jumbotron";
 
 const Profile = ({ currentUser }) => {
   const { userSlug } = useParams();
@@ -40,6 +41,7 @@ const Profile = ({ currentUser }) => {
 
   return (
     <div className="Profile">
+      <Jumbotron />
       Page profile
       {user && (
         <ul>

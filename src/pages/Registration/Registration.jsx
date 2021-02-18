@@ -54,7 +54,7 @@ const Registration = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <input type="submit" value="Sign in"></input>
+        <input type="submit" value="Sign up"></input>
       </form>
       {register.error && <p> Erreur : {register.error}</p>}
     </div>
