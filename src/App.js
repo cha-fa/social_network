@@ -36,6 +36,9 @@ const App = () => {
           <Route path="/" exact>
             <Home currentUser={currentUser} />
           </Route>
+          <Route path="/social_network">
+            <Home currentUser={currentUser} />
+          </Route>
           <Route path="/register" component={Registration} />
           <Route path="/login" component={Login} />
           <PrivateRoute path="/users/:userSlug" exact>
