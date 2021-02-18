@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Metropolis Regular";
+  src: url("./fonts/metropolis-regular.otf");
+}
+
+@font-face {
+  font-family: "Avenir Next Lt Pro";
+  src: url("./fonts/avenir-next-lt-pro-demi.otf");
+}
+
+$text-font-family: "Metropolis Regular";
+$title-font-family: "Avenir Next Lt Pro";
+$text-color: #b81a5d;
+$title-color: #ea3096;
+$text-muted-color: #888888;
+$background-color: #fafafa;

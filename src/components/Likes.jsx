@@ -16,8 +16,6 @@ const Likes = ({ post, currentUser }) => {
     setLiked(!liked);
   };
 
-  useEffect(() => {}, [post.likedUsers]);
-
   return (
     <div className="Likes">
       {currentUser && (

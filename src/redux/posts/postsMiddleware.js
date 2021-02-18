@@ -60,7 +60,8 @@ export const addPost = (postData) => {
         if (!response.error) {
           dispatch(addPostSuccess(response));
         } else {
-          dispatch(addPostError(response.message[0].messages[0].message));
+          console.log(response);
+          dispatch(addPostError(response));
         }
       });
   };

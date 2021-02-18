@@ -1,3 +1,4 @@
+import Jumbotron from "pages/Home/components/Jumbotron";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerFetch } from "redux/authentication/authMiddleware";
@@ -22,36 +23,32 @@ const Registration = () => {
 
   return (
     <div className="Registration">
-      Page Registration
+      <Jumbotron />
+
+      <h2>Account Creation</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label for="username">Username:</label>
+          <p>Username:</p>
           <input
             type="text"
-            id="username"
-            name="username"
             required
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
-          <label for="email">Email:</label>
+          <p>Email:</p>
           <input
             type="text"
-            id="email"
-            name="email"
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div>
-          <label for="password">Password (8 characters minimum):</label>
+          <p>Password:</p>
           <input
             type="password"
-            id="password"
-            name="password"
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}

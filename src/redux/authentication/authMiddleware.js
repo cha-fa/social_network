@@ -30,6 +30,7 @@ export const registerFetch = (userData) => {
             JSON.stringify(response)
           );
         } else {
+          console.log(response);
           dispatch(registerFailure(response.message[0].messages[0].message));
         }
       });
@@ -58,6 +59,7 @@ export const loginFetch = (userData) => {
             JSON.stringify(response)
           );
         } else {
+          console.log(response);
           dispatch(loginFailure(response.message[0].messages[0].message));
         }
       });

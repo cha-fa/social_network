@@ -1,0 +1,36 @@
+@import "variables";
+.Navbar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid #ffffff;
+  font-family: $title-font-family;
+  font-size: 20px;
+
+  a {
+    text-decoration: none;
+    color: $title-color;
+  }
+
+  .Authentication {
+    position: absolute;
+    bottom: 5%;
+
+    p {
+      color: $text-muted-color;
+
+      &:hover {
+        color: $text-color;
+        cursor: pointer;
+      }
+    }
+
+    a {
+      font-weight: bold;
+    }
+
+    span {
+      color: $text-color;
+    }
+  }
+}

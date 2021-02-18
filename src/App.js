@@ -10,6 +10,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import { useSelector } from "react-redux";
+import RightNav from "components/RightNav";
 
 const App = () => {
   const currentUser = useSelector((state) => state.auth.user);
@@ -28,9 +29,7 @@ const App = () => {
   );
 
   return (
-    <container>
-      <h1>New twitter</h1>
-      {currentUser && <p>User {currentUser.email} est connecté</p>}
+    <container className="SocialApp">
       <Router>
         <Navbar currentUser={currentUser} />
         <Switch>
@@ -46,6 +45,7 @@ const App = () => {
             <Profile currentUser={currentUser} />
           </PrivateRoute>
         </Switch>
+        <RightNav />
       </Router>
     </container>
   );

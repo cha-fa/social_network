@@ -3,6 +3,7 @@ import NewPost from "pages/Home/components/NewPost";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "redux/posts/postsMiddleware";
+import Jumbotron from "./components/Jumbotron";
 
 const Home = ({ currentUser }) => {
   const [newPost, setNewPost] = useState();
@@ -25,9 +26,9 @@ const Home = ({ currentUser }) => {
 
   return (
     <div className="Home">
-      This is Home page
-      <h2>Latest posts</h2>
-      <NewPost currentUser={currentUser} handleNewPost={handleNewPost} />
+      {(currentUser && (
+        <NewPost currentUser={currentUser} handleNewPost={handleNewPost} />
+      )) || <Jumbotron />}
       <PostList posts={posts} />
     </div>
   );

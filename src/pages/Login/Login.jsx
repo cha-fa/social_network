@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginFetch } from "redux/authentication/authMiddleware";
 import { useHistory } from "react-router-dom";
+import Jumbotron from "pages/Home/components/Jumbotron";
 
 const Login = ({ location }) => {
   const [identifier, setIdentifier] = useState("");
@@ -30,11 +31,12 @@ const Login = ({ location }) => {
   }, [loginInfo]);
 
   return (
-    <div className="Auth">
-      <p>Page Authentification</p>
+    <div className="Login">
+      <Jumbotron />
+
       <form onSubmit={handleSubmit}>
         <div>
-          <label for="identifier">Username or Email:</label>
+          <p>Username or Email:</p>
           <input
             type="text"
             id="identifier"
@@ -45,7 +47,7 @@ const Login = ({ location }) => {
           />
         </div>
         <div>
-          <label for="password">Password (8 characters minimum):</label>
+          <p>Password:</p>
           <input
             type="password"
             id="password"
