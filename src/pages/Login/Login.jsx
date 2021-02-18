@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginFetch } from "redux/authentication/authMiddleware";
 import { useHistory } from "react-router-dom";
 
-const Auth = ({ location }) => {
+const Login = ({ location }) => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -63,4 +63,4 @@ const Auth = ({ location }) => {
   );
 };
 
-export default Auth;
+export default Login;

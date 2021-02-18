@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerFetch } from "redux/authentication/authMiddleware";
-const slugify = require("slugify");
 
 const Registration = () => {
   const dispatch = useDispatch();
@@ -10,7 +9,6 @@ const Registration = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [description, setDescription] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -18,8 +16,6 @@ const Registration = () => {
       username: username,
       email: email,
       password: password,
-      description: description,
-      slug: slugify(username),
     };
     dispatch(registerFetch(userData));
   };
@@ -59,18 +55,6 @@ const Registration = () => {
             required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <label for="email">Description:</label>
-          <textarea
-            type="text"
-            rows="5"
-            id="description"
-            name="description"
-            required
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
           />
         </div>
         <input type="submit" value="Sign in"></input>
